@@ -1,0 +1,17 @@
+name: User Story
+description: Create a user story. Make sure it adheres to the INVEST principles.
+labels:
+  - user-story
+body:
+  - type: markdown
+    attributes:
+      value: |
+        "## User Story
+        ...
+
+        ## Acceptance criteria
+        - [ ] ...
+        "
+  - type: textarea
+    attributes:
+      label: Test
