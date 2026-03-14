@@ -17,17 +17,17 @@ body:
     validations:
       required: true
 
-  - type: checkboxes
+  - type: textarea
     id: acceptance-criteria
     attributes:
       label: Acceptance Criteria
-      description: What must be true for this story to be considered 'Done'?
-      options:
-        - label: "Criteria 1: [Edit me]"
-        - label: "Criteria 2: [Edit me]"
-        - label: "Criteria 3: [Edit me]"
-        - label: "The feature is covered by unit tests."
-        - label: "Documentation has been updated."
+      description: "List the criteria that must be met for this story to be 'Done'. (You can add or edit rows below)"
+      value: |
+        - [ ] Criteria 1: 
+        - [ ] Criteria 2: 
+        - [ ] Criteria 3: 
+        - [ ] The feature is covered by unit tests.
+        - [ ] Documentation has been updated.
     validations:
       required: true
 
