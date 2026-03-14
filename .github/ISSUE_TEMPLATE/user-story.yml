@@ -12,3 +12,6 @@ body:
         ## Acceptance criteria
         - [ ] ...
         "
+  - type: textarea
+    attributes:
+      value: Test
