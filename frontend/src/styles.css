@@ -9,4 +9,5 @@
   --color-surface: var(--mat-sys-surface);
   --color-on-surface: var(--mat-sys-on-surface);
   --color-error: var(--mat-sys-error);
+  --color-surface-variant: var(--mat-sys-surface-variant);
 }

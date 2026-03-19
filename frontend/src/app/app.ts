@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import {NgOptimizedImage} from '@angular/common';
+import {NavigationComponent} from '../navigation/navigation.component';
 
 @Component({
   selector: 'app-root',
   imports: [
-    NgOptimizedImage
+    NavigationComponent
   ],
   templateUrl: './app.html',
   styleUrl: './app.css'
