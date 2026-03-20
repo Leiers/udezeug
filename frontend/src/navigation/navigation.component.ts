@@ -3,7 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import {AsyncPipe, NgOptimizedImage} from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatSidenav, MatSidenavModule} from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
@@ -12,6 +12,7 @@ import {Router, RouterLink, RouterOutlet} from '@angular/router';
 import {Search} from '../app/pages/search/search';
 import {Overlay, OverlayModule, OverlayRef} from '@angular/cdk/overlay';
 import {TemplatePortal} from '@angular/cdk/portal';
+import {defaultPatterns, WebHaptics} from 'web-haptics';
 
 @Component({
   selector: 'app-navigation',
@@ -35,15 +36,18 @@ export class NavigationComponent {
   private breakpointObserver = inject(BreakpointObserver);
   private router = inject(Router)
   readonly searchOpen = signal(false)
+  readonly haptics = new WebHaptics()
 
   @ViewChild('bigSearch')
   private searchElement!: ElementRef<HTMLInputElement>;
+
+  @ViewChild('drawer')
+  private drawer!: ElementRef<MatSidenav>;
 
   constructor() {
     effect(() => {
       if (this.searchOpen() && this.searchElement) {
         setTimeout(() => this.searchElement.nativeElement.focus(), 0);
-        console.log('focus')
       }
     });
   }
@@ -53,7 +57,13 @@ export class NavigationComponent {
     shareReplay(),
   );
 
+  toggleDrawer() {
+    this.drawer.nativeElement.toggle().then();
+    this.haptics.trigger(defaultPatterns.medium).then();
+  }
+
   toggleSearch() {
+    this.haptics.trigger(defaultPatterns.medium).then();
     this.searchOpen.update(open => !open)
   }
 
@@ -69,4 +79,6 @@ export class NavigationComponent {
       }, 0);
     }
   }
+
+  protected readonly defaultPatterns = defaultPatterns;
 }

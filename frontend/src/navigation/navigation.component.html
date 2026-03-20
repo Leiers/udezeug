@@ -29,7 +29,8 @@
   <mat-sidenav-content>
     <mat-toolbar class="flex items-center justify-between">
       @if (isHandset$ | async) {
-        <button type="button" aria-label="Toggle sidenav" matIconButton (click)="drawer.toggle()">
+        <button type="button" aria-label="Toggle sidenav" matIconButton
+                (click)="drawer.toggle(); this.haptics.trigger(defaultPatterns.medium).then();">
           <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
         @if (!onSearchPage) {

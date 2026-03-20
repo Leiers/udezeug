@@ -33,7 +33,6 @@
 
 .fade-out {
   opacity: 0;
-  transform: scale(0.95);
   transition: opacity 0.2s ease-in, transform 0.2s ease-in;
 }
 
