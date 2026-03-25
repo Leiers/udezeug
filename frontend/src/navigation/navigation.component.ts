@@ -10,8 +10,7 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import {Router, RouterLink, RouterOutlet} from '@angular/router';
 import {Search} from '../app/pages/search/search';
-import {Overlay, OverlayModule, OverlayRef} from '@angular/cdk/overlay';
-import {TemplatePortal} from '@angular/cdk/portal';
+import { OverlayModule } from '@angular/cdk/overlay';
 import {defaultPatterns, WebHaptics} from 'web-haptics';
 
 @Component({
