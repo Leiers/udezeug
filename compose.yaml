@@ -1,0 +1,27 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    networks:
+      - internal
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80"
+  db:
+    container_name: db
+    image: postgres:latest
+    restart: unless-stopped
+    networks:
+      - internal
+    environment:
+      POSTGRES_USER: dbuser
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: udezeugdb
+
+networks:
+  internal:
+    external: false
