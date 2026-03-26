@@ -1,6 +1,6 @@
 package de.udezeug.backend.course.dto;
 
-public record CourseCreationResponse(
+public record CourseResponse(
         String id,
         String name,
         String description

@@ -1,7 +1,7 @@
 package de.udezeug.backend.course;
 
 import de.udezeug.backend.course.dto.CourseCreationRequest;
-import de.udezeug.backend.course.dto.CourseCreationResponse;
+import de.udezeug.backend.course.dto.CourseResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.ReportingPolicy;
@@ -13,5 +13,5 @@ import org.mapstruct.ReportingPolicy;
 )
 public interface CourseMapper {
     Course toCourse(CourseCreationRequest request);
-    CourseCreationResponse toCourseCreationResponse(Course course);
+    CourseResponse toCourseResponse(Course course);
 }
