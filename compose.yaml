@@ -10,7 +10,7 @@ services:
   frontend:
     build: ./frontend
     environment:
-      API_URL: https://api.example.org
+      API_URL: https://api.udezeug.de
     ports:
       - "80:80"
   db:
