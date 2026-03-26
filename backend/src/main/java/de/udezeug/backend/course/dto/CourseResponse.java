@@ -1,7 +1,9 @@
 package de.udezeug.backend.course.dto;
 
+import java.util.UUID;
+
 public record CourseResponse(
-        String id,
+        UUID id,
         String name,
         String description
 ) {
