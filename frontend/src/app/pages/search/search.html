@@ -12,33 +12,35 @@
 
 <div class="container">
   @if (courses.isLoading()) {
-    <div class="flex justify-center p-10">
+    <div class="flex justify-center absolute left-0 w-full mt-7 z-10">
       <mat-spinner diameter="50"></mat-spinner>
     </div>
   }
 
-  @if (courses.hasValue()) {
-    <div class="p-5 flex flex-row justify-between">
+  <div [class.opacity-50]="courses.isLoading()" class="transition-opacity">
+    @if (courses.hasValue()) {
+      <div class="p-5 flex flex-row justify-between">
       <span>
             {{ courses.value().length }} Ergebnisse
       </span>
-    </div>
+      </div>
 
-    <ul class="flex flex-col gap-4">
-      @for (course of courses.value(); track course.id) {
-        <li>
-          <mat-card class="p-5">
-            <div class="flex flex-col">
-              <mat-card-title>
-                <span routerLink="/course/{{ course.id }}">{{ course.name }}</span>
-              </mat-card-title>
-              <mat-card-subtitle>
-                <span class="text-gray-400">{{ course.description }}</span>
-              </mat-card-subtitle>
-            </div>
-          </mat-card>
-        </li>
-      }
-    </ul>
-  }
+      <ul class="flex flex-col gap-4">
+        @for (course of courses.value(); track course.id) {
+          <li>
+            <mat-card class="p-5">
+              <div class="flex flex-col">
+                <mat-card-title>
+                  <span routerLink="/course/{{ course.id }}">{{ course.name }}</span>
+                </mat-card-title>
+                <mat-card-subtitle>
+                  <span class="text-gray-400">{{ course.description }}</span>
+                </mat-card-subtitle>
+              </div>
+            </mat-card>
+          </li>
+        }
+      </ul>
+    }
+  </div>
 </div>

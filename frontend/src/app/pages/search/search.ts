@@ -2,7 +2,7 @@ import {Component, inject} from '@angular/core';
 import {MatIcon} from '@angular/material/icon';
 import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {toSignal} from '@angular/core/rxjs-interop';
-import {debounceTime, distinctUntilChanged, tap} from 'rxjs';
+import {debounceTime, distinctUntilChanged, filter} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {CourseService} from '../../course/course-service';
 import {MatCard, MatCardSubtitle, MatCardTitle} from '@angular/material/card';
@@ -32,6 +32,7 @@ export class Search {
       map(v => (v ?? '').trim()),
       debounceTime(400),
       distinctUntilChanged(),
+      filter(v => v.length > 0),
     ),
     {initialValue: this.searchControl.value ?? ''}
   );
