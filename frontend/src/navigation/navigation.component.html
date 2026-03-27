@@ -34,7 +34,7 @@
           <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
         @if (!onSearchPage) {
-          <button class="ml-auto" matIconButton (click)="toggleSearch()">
+          <button class="ml-auto" matIconButton routerLink="search">
             <mat-icon>search</mat-icon>
           </button>
         }
@@ -45,11 +45,3 @@
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
-
-@if (searchOpen()) {
-  <div class="overlay absolute top-0 left-0 w-full z-50 bg-black/60 h-full" (click)="toggleSearch()"
-       [class.fade-slide-in]="true" animate.leave="fade-out"></div>
-  <div class="big-search absolute top-23 lef-0 w-full z-50 px-5" [class.fade-slide-in]="true" #bigSearch>
-    <app-search></app-search>
-  </div>
-}

@@ -1,5 +1,10 @@
-@if (course.hasValue()) {
+@if (course.isLoading()) {
+  <div class="flex justify-center absolute left-0 w-full mt-7 z-10">
+    <mat-spinner diameter="50"></mat-spinner>
+  </div>
+} @else if (course.hasValue()) {
   <p>Found course {{ course.value().name }}</p>
 } @else {
   <p>Course not found <a routerLink="/search" class="text-blue-400 underline underline-offset-3">Go to search</a></p>
 }
+

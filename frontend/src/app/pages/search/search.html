@@ -1,9 +1,68 @@
-<div class="container relative max-w-2xl mx-auto">
-  <input
-    class="block mx-auto py-3 px-6 rounded-full w-full shadow shadow-black bg-surface-variant focus:ring-2 focus:ring-primary focus:outline-none"
-         type="search"
-         placeholder="Suche">
-  <mat-icon class="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer">
-    search
-  </mat-icon>
+<div class="container max-w-2xl mx-auto">
+  <div class="search-box relative">
+    <input
+      class="block mx-auto py-3 px-6 rounded-full w-full shadow shadow-black bg-surface-variant focus:ring-2 focus:ring-primary focus:outline-none"
+      type="search"
+      placeholder="Suche" [formControl]="searchControl">
+    @if (searchControl.value) {
+      <mat-icon
+        matTooltip="Suche leeren"
+        (click)="searchControl.setValue('')"
+        class="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer hover:text-primary transition-colors">
+        close
+      </mat-icon>
+    } @else {
+      <mat-icon class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-outline">
+        search
+      </mat-icon>
+    }
+  </div>
+</div>
+
+<div class="container">
+  @if (courses.isLoading()) {
+    <div class="flex justify-center absolute left-0 w-full mt-7 z-10">
+      <mat-spinner diameter="50"></mat-spinner>
+    </div>
+  }
+
+  <div [class.opacity-50]="courses.isLoading()" class="transition-opacity">
+    @if (courses.hasValue()) {
+      <div class="p-5 flex flex-row justify-between">
+      <span>
+            {{ courses.value().length }} Ergebnisse
+      </span>
+      </div>
+
+      <ul class="flex flex-col gap-4">
+        @for (course of courses.value(); track course.id) {
+          <li>
+            <mat-card class="p-4">
+              <mat-card-content>
+                <div class="grid grid-cols-[1fr_auto] items-center gap-4 w-full">
+                  <div class="flex flex-col min-w-0">
+                    <mat-card-title>
+                      <span class="block truncate font-bold text-lg">{{ course.name }}</span>
+                    </mat-card-title>
+                    <mat-card-subtitle>
+                      <span class="text-gray-400 block truncate">{{ course.description }}</span>
+                    </mat-card-subtitle>
+                  </div>
+                  <div class="flex justify-end">
+                    <button
+                      matButton="filled"
+                      matTooltip="Kurs Ansehen"
+                      class="whitespace-nowrap px-6"
+                      [routerLink]="['/course', course.id]">
+                      Ansehen
+                    </button>
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </li>
+        }
+      </ul>
+    }
+  </div>
 </div>

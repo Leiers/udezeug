@@ -9,7 +9,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import {Router, RouterLink, RouterOutlet} from '@angular/router';
-import {Search} from '../app/pages/search/search';
 import { OverlayModule } from '@angular/cdk/overlay';
 import {defaultPatterns, WebHaptics} from 'web-haptics';
 
@@ -27,7 +26,6 @@ import {defaultPatterns, WebHaptics} from 'web-haptics';
     NgOptimizedImage,
     RouterLink,
     RouterOutlet,
-    Search,
     OverlayModule
   ],
 })
@@ -55,16 +53,6 @@ export class NavigationComponent {
     map((result) => result.matches),
     shareReplay(),
   );
-
-  toggleDrawer() {
-    this.drawer.nativeElement.toggle().then();
-    this.haptics.trigger(defaultPatterns.medium).then();
-  }
-
-  toggleSearch() {
-    this.haptics.trigger(defaultPatterns.medium).then();
-    this.searchOpen.update(open => !open)
-  }
 
   get onSearchPage() {
     return this.router.url.includes('search')

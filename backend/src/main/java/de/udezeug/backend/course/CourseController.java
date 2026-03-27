@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @CrossOrigin
@@ -25,5 +26,10 @@ public class CourseController {
     @GetMapping("/{id}")
     public ResponseEntity<CourseResponse> getCourse(@PathVariable UUID id) {
         return ResponseEntity.ok(this.service.getCourse(id));
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<CourseResponse>> searchCourses(@RequestParam String query) {
+        return ResponseEntity.ok(this.service.searchCourses(query));
     }
 }

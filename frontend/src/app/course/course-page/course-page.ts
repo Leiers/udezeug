@@ -1,11 +1,13 @@
 import {Component, computed, inject} from '@angular/core';
 import {ActivatedRoute, RouterLink} from '@angular/router';
 import {CourseService} from '../course-service';
+import {MatProgressSpinner} from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-course-page',
   imports: [
-    RouterLink
+    RouterLink,
+    MatProgressSpinner
   ],
   templateUrl: './course-page.html',
   styleUrl: './course-page.css',
