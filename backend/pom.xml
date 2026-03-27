@@ -73,6 +73,18 @@
             <version>1.6.3</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>org.hibernate.search</groupId>
+            <artifactId>hibernate-search-mapper-orm</artifactId>
+            <version>8.3.0.Final</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.search</groupId>
+            <artifactId>hibernate-search-backend-lucene</artifactId>
+            <version>8.3.0.Final</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>
