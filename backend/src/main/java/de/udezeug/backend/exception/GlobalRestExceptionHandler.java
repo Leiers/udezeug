@@ -7,16 +7,23 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import java.util.Objects;
 
 @Slf4j
 @RestControllerAdvice
 public class GlobalRestExceptionHandler {
+    @ExceptionHandler(NoResourceFoundException.class)
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
+    public ErrorResponse handleNoResourceFoundException(NoResourceFoundException e) {
+        return new ErrorResponse("Resource not found");
+    }
+
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     public ErrorResponse handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException e) {
-        log.error("Exception occurred", e);
+        log.error("Exception occurred: {}", e.getMessage());
         return new ErrorResponse("Invalid value for " + e.getName());
     }
 
