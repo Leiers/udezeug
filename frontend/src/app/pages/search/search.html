@@ -28,10 +28,10 @@
       <ul class="flex flex-col gap-4">
         @for (course of courses.value(); track course.id) {
           <li>
-            <mat-card class="p-5">
+            <mat-card class="p-5 cursor-pointer" routerLink="/course/{{ course.id }}">
               <div class="flex flex-col">
                 <mat-card-title>
-                  <span class="cursor-pointer" routerLink="/course/{{ course.id }}">{{ course.name }}</span>
+                  <span>{{ course.name }}</span>
                 </mat-card-title>
                 <mat-card-subtitle>
                   <span class="text-gray-400">{{ course.description }}</span>
