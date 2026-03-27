@@ -5,9 +5,10 @@ import {toSignal} from '@angular/core/rxjs-interop';
 import {debounceTime, distinctUntilChanged, filter} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {CourseService} from '../../course/course-service';
-import {MatCard, MatCardSubtitle, MatCardTitle} from '@angular/material/card';
+import {MatCard, MatCardContent, MatCardSubtitle, MatCardTitle} from '@angular/material/card';
 import {RouterLink} from '@angular/router';
 import {MatProgressSpinner} from '@angular/material/progress-spinner';
+import {MatButton} from '@angular/material/button';
 
 @Component({
   selector: 'app-search',
@@ -19,6 +20,8 @@ import {MatProgressSpinner} from '@angular/material/progress-spinner';
     MatCardSubtitle,
     RouterLink,
     MatProgressSpinner,
+    MatButton,
+    MatCardContent,
   ],
   templateUrl: './search.html',
   styleUrl: './search.css',

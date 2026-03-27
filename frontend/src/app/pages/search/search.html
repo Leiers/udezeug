@@ -28,15 +28,20 @@
       <ul class="flex flex-col gap-4">
         @for (course of courses.value(); track course.id) {
           <li>
-            <mat-card class="p-5 cursor-pointer" routerLink="/course/{{ course.id }}">
-              <div class="flex flex-col">
-                <mat-card-title>
-                  <span>{{ course.name }}</span>
-                </mat-card-title>
-                <mat-card-subtitle>
-                  <span class="text-gray-400">{{ course.description }}</span>
-                </mat-card-subtitle>
-              </div>
+            <mat-card class="p-4">
+              <mat-card-content>
+                <div class="flex flex-row items-center justify-between">
+                  <div class="flex flex-col">
+                    <mat-card-title>
+                      <span>{{ course.name }}</span>
+                    </mat-card-title>
+                    <mat-card-subtitle>
+                      <span class="text-gray-400">{{ course.description }}</span>
+                    </mat-card-subtitle>
+                  </div>
+                  <button matButton="filled" [routerLink]="['/course', course.id]">Ansehen</button>
+                </div>
+              </mat-card-content>
             </mat-card>
           </li>
         }
