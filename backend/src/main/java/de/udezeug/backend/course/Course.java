@@ -1,13 +1,12 @@
 package de.udezeug.backend.course;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.DocumentId;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -29,4 +28,9 @@ public class Course {
     @FullTextField(analyzer = "german")
     @FullTextField(name = "name_autocomplete", analyzer = "autocomplete", searchAnalyzer = "autocomplete_query")
     private String description;
+
+    @FullTextField(analyzer = "german")
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "course_tags", joinColumns = @JoinColumn(name = "course_id"))
+    private List<String> tags;
 }

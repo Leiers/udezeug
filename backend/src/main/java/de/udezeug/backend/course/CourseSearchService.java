@@ -18,7 +18,7 @@ public class CourseSearchService {
 
         return searchSession.search(Course.class)
                 .where(f -> f.match()
-                        .fields("name", "name_autocomplete", "description")
+                        .fields("name", "name_autocomplete", "description", "tags")
                         .matching(query)
                         .fuzzy(1))
                 .fetchHits(20);

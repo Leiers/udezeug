@@ -8,6 +8,7 @@ import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
+import java.util.List;
 import java.util.UUID;
 
 import static org.mockito.Mockito.when;
@@ -27,8 +28,8 @@ public class CourseControllerTest {
 
     @Test
     void shouldReturnCourse() throws Exception {
-        final Course course = new Course(UUID.randomUUID(), "Course name", "Course description");
-        final CourseResponse response = new CourseResponse(course.getId(), course.getName(), course.getDescription());
+        final Course course = new Course(UUID.randomUUID(), "Course name", "Course description", List.of("Tag 1", "Tag 2"));
+        final CourseResponse response = new CourseResponse(course.getId(), course.getName(), course.getDescription(), course.getTags());
 
         when(service.getCourse(course.getId())).thenReturn(response);
         when(mapper.toCourseResponse(course)).thenReturn(response);
@@ -37,6 +38,9 @@ public class CourseControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(course.getId().toString()))
                 .andExpect(jsonPath("$.name").value(course.getName()))
-                .andExpect(jsonPath("$.description").value(course.getDescription()));
+                .andExpect(jsonPath("$.description").value(course.getDescription()))
+                .andExpect(jsonPath("$.tags").isArray())
+                .andExpect(jsonPath("$.tags[0]").value("Tag 1"))
+                .andExpect(jsonPath("$.tags[1]").value("Tag 2"));
     }
 }
