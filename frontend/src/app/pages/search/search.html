@@ -11,6 +11,12 @@
 </div>
 
 <div class="container">
+  @if (courses.isLoading()) {
+    <div class="flex justify-center p-10">
+      <mat-spinner diameter="50"></mat-spinner>
+    </div>
+  }
+
   @if (courses.hasValue()) {
     <div class="p-5 flex flex-row justify-between">
       <span>

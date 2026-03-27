@@ -7,6 +7,7 @@ import {map} from 'rxjs/operators';
 import {CourseService} from '../../course/course-service';
 import {MatCard, MatCardSubtitle, MatCardTitle} from '@angular/material/card';
 import {RouterLink} from '@angular/router';
+import {MatProgressSpinner} from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-search',
@@ -17,6 +18,7 @@ import {RouterLink} from '@angular/router';
     MatCardTitle,
     MatCardSubtitle,
     RouterLink,
+    MatProgressSpinner,
   ],
   templateUrl: './search.html',
   styleUrl: './search.css',
@@ -30,7 +32,6 @@ export class Search {
       map(v => (v ?? '').trim()),
       debounceTime(400),
       distinctUntilChanged(),
-      tap(v => console.log('search term changed to', v)),
     ),
     {initialValue: this.searchControl.value ?? ''}
   );
