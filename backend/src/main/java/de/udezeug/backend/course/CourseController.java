@@ -30,11 +30,6 @@ public class CourseController {
 
     @GetMapping("/search")
     public ResponseEntity<List<CourseResponse>> searchCourses(@RequestParam String query) {
-        return ResponseEntity.ok(
-                List.of(
-                        new CourseResponse(UUID.randomUUID(), "Test Course", "Test Description"),
-                        new CourseResponse(UUID.randomUUID(), "Lina", "Lineare Algebra für Informatiker und " +
-                                "Wirtschaftsinformatiker"))
-        );
+        return ResponseEntity.ok(this.service.searchCourses(query));
     }
 }
