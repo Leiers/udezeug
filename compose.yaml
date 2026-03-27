@@ -1,6 +1,11 @@
 services:
   backend:
     build: ./backend
+    environment:
+      DB_USER: dbuser
+      DB_PASSWORD: password
+      DB_HOST: db
+      DB_NAME: udezeugdb
     ports:
       - "8080:8080"
     depends_on:
@@ -10,7 +15,7 @@ services:
   frontend:
     build: ./frontend
     environment:
-      API_URL: https://api.udezeug.de
+      API_URL: http://localhost:8080
     ports:
       - "80:80"
   db:
