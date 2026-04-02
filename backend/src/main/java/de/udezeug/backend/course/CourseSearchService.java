@@ -17,10 +17,17 @@ public class CourseSearchService {
         final SearchSession searchSession = Search.session(entityManager);
 
         return searchSession.search(Course.class)
-                .where(f -> f.match()
-                        .fields("name", "name_autocomplete", "description", "tags")
-                        .matching(query)
-                        .fuzzy(1))
+                .where(f -> {
+                    if (query == null || query.isBlank()) {
+                        return f.matchAll();
+                    } else {
+                        return f.match()
+                                .fields("name", "name_autocomplete", "description", "tags")
+                                .matching(query)
+                                .fuzzy(1);
+                    }
+                })
+                .sort(f -> f.field("name_sort"))
                 .fetchHits(20);
     }
 }
