@@ -11,6 +11,13 @@
       <textarea [formField]="createCourseForm.description" matInput></textarea>
     </mat-form-field>
 
-    <button class="w-full lg:w-fit" matButton="filled">Erstellen</button>
+    <button class="w-full lg:w-fit" matButton="filled">
+      <span class="btn-content flex gap-3 items-center">
+        @if (isLoading()) {
+          <mat-spinner diameter="20" class="mat-sys-on-primary"></mat-spinner>
+        }
+        <span>Erstellen</span>
+      </span>
+    </button>
   </form>
 </div>
