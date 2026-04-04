@@ -7,7 +7,7 @@ import {MatProgressSpinner} from '@angular/material/progress-spinner';
   selector: 'app-course-page',
   imports: [
     RouterLink,
-    MatProgressSpinner
+    MatProgressSpinner,
   ],
   templateUrl: './course-page.html',
   styleUrl: './course-page.css',

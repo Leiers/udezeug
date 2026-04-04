@@ -36,4 +36,7 @@ public class Course {
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "course_tags", joinColumns = @JoinColumn(name = "course_id"))
     private List<String> tags;
+
+    @Builder.Default
+    private boolean visible = true;
 }

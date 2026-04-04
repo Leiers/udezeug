@@ -5,6 +5,7 @@ import {form, FormField, maxLength, minLength, required} from '@angular/forms/si
 import {CourseService} from '../course-service';
 import {Router} from '@angular/router';
 import {MatProgressSpinner} from '@angular/material/progress-spinner';
+import {MatSlideToggle} from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-create-course',
@@ -15,15 +16,16 @@ import {MatProgressSpinner} from '@angular/material/progress-spinner';
     MatButton,
     FormField,
     MatProgressSpinner,
+    MatSlideToggle,
   ],
   templateUrl: './create-course.html',
   styleUrl: './create-course.css',
 })
 export class CreateCourse {
   private readonly courseService = inject(CourseService)
-  private readonly router= inject(Router)
+  private readonly router = inject(Router)
 
-  protected readonly createCourseModel = signal<CreateCourseData>({name: '', description: ''})
+  protected readonly createCourseModel = signal<CreateCourseData>({name: '', description: '', visible: true})
   protected readonly createCourseForm = form(this.createCourseModel, (schema) => {
     required(schema.name)
     minLength(schema.name, 3)
@@ -38,7 +40,9 @@ export class CreateCourse {
     this.isLoading.set(true)
 
     this.courseService.createCourse(this.createCourseModel()).subscribe((data) => {
-      this.router.navigate(["course", data.id]).then(() => this.isLoading.set(false))
+      const courseId = data.id
+      const route = courseId ? ["course", courseId] : ["/"]
+      this.router.navigate(route).then(() => this.isLoading.set(false))
     })
   }
 }
@@ -46,4 +50,5 @@ export class CreateCourse {
 export interface CreateCourseData {
   name: string,
   description: string
+  visible: boolean
 }

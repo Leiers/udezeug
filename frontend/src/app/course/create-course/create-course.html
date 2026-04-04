@@ -11,13 +11,23 @@
       <textarea [formField]="createCourseForm.description" matInput></textarea>
     </mat-form-field>
 
-    <button class="w-full lg:w-fit" matButton="filled">
+    <mat-slide-toggle [formField]="createCourseForm.visible">
+      @if (createCourseModel().visible) {
+        Öffentlich
+      } @else {
+        Privat
+      }
+    </mat-slide-toggle>
+
+    <div class="submit-container mt-8">
+      <button class="w-full lg:w-fit" matButton="filled">
       <span class="btn-content flex gap-3 items-center">
         @if (isLoading()) {
           <mat-spinner diameter="20" class="mat-sys-on-primary"></mat-spinner>
         }
         <span>Erstellen</span>
       </span>
-    </button>
+      </button>
+    </div>
   </form>
 </div>

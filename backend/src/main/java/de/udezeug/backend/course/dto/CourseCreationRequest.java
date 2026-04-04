@@ -8,6 +8,7 @@ public record CourseCreationRequest(
         @Size(min = 3, max = 255)
         String name,
         String description,
-        List<String> tags
+        List<String> tags,
+        Boolean visible
 ) {
 }
