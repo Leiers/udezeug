@@ -14,6 +14,7 @@ import org.mapstruct.ReportingPolicy;
 )
 public interface CourseMapper {
     Course toCourse(CourseCreationRequest request);
+
     @Mapping(target = "id", expression = "java(course.isVisible() ? course.getId() : null)")
     @Mapping(target = "description", expression = "java(course.isVisible() ? course.getDescription() : null)")
     CourseResponse toCourseResponse(Course course);

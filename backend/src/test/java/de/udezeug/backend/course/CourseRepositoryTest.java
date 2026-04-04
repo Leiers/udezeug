@@ -15,7 +15,8 @@ public class CourseRepositoryTest {
 
     @Test
     void shouldSaveCourse() {
-        final Course course = this.repository.save(new Course(null, "Test Course", "Test Description", List.of("Tag 1", "Tag 2")));
+        final Course course = this.repository.save(new Course(null, "Test Course", "Test Description", List.of("Tag " +
+                "1", "Tag 2"), true));
         final var foundCourse = this.repository.findById(course.getId());
 
         assertThat(foundCourse).isPresent();
@@ -23,5 +24,6 @@ public class CourseRepositoryTest {
         assertThat(foundCourse.get().getName()).isEqualTo("Test Course");
         assertThat(foundCourse.get().getDescription()).isEqualTo("Test Description");
         assertThat(foundCourse.get().getTags()).containsExactly("Tag 1", "Tag 2");
+        assertThat(foundCourse.get().isVisible()).isEqualTo(true);
     }
 }
