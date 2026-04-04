@@ -7,6 +7,7 @@ public record CourseResponse(
         UUID id,
         String name,
         String description,
-        List<String> tags
+        List<String> tags,
+        Boolean visible
 ) {
 }
