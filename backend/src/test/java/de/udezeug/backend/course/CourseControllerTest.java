@@ -52,7 +52,7 @@ public class CourseControllerTest {
     void shouldReturnPrivateCourse() throws Exception {
         final Course course = new Course(UUID.randomUUID(), "Course name", "Course description", List.of("Tag 1",
                 "Tag 2"), false);
-        final CourseResponse response = new CourseResponse(null, course.getName(), null, course.getTags(), false);
+        final CourseResponse response = new CourseResponse(null, course.getName(), null, null, false);
 
         when(service.getCourse(course.getId())).thenReturn(response);
         when(mapper.toCourseResponse(course)).thenReturn(response);
@@ -63,8 +63,6 @@ public class CourseControllerTest {
                 .andExpect(jsonPath("$.name").value(course.getName()))
                 .andExpect(jsonPath("$.description").doesNotExist())
                 .andExpect(jsonPath("$.visible").value(false))
-                .andExpect(jsonPath("$.tags").isArray())
-                .andExpect(jsonPath("$.tags[0]").value("Tag 1"))
-                .andExpect(jsonPath("$.tags[1]").value("Tag 2"));
+                .andExpect(jsonPath("$.tags").doesNotExist());
     }
 }

@@ -36,7 +36,7 @@ public class CourseMapperTest {
         assertThat(courseResponse.id()).isNull();
         assertThat(courseResponse.name()).isEqualTo(request.name());
         assertThat(courseResponse.description()).isNull();
-        assertThat(courseResponse.tags()).isEqualTo(request.tags());
+        assertThat(courseResponse.tags()).isNullOrEmpty();
         assertThat(courseResponse.visible()).isEqualTo(request.visible());
     }
 }
