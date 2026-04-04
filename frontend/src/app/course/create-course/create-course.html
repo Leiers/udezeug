@@ -11,15 +11,24 @@
       <textarea [formField]="createCourseForm.description" matInput></textarea>
     </mat-form-field>
 
-    <mat-slide-toggle [formField]="createCourseForm.visible">
-      @if (createCourseModel().visible) {
-        Öffentlich
-      } @else {
-        Privat
-      }
-    </mat-slide-toggle>
+    <mat-form-field>
+      <mat-label>Klausurdatum</mat-label>
+      <input [formField]="createCourseForm.examDate" matInput [matDatepicker]="picker">
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
 
-    <div class="submit-container mt-8">
+    <div>
+      <mat-slide-toggle [formField]="createCourseForm.visible">
+        @if (createCourseModel().visible) {
+          Öffentlich
+        } @else {
+          Privat
+        }
+      </mat-slide-toggle>
+    </div>
+
+    <div class="submit-container mt-8 flex items-center gap-4">
       <button class="w-full lg:w-fit" matButton="filled">
       <span class="btn-content flex gap-3 items-center">
         @if (isLoading()) {
@@ -28,6 +37,12 @@
         <span>Erstellen</span>
       </span>
       </button>
+      <mat-error>
+        @if (errorMessage()) {
+          Ein Fehler ist aufgetreten:
+          {{ errorMessage() }}
+        }
+      </mat-error>
     </div>
   </form>
 </div>
