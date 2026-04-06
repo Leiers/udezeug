@@ -22,6 +22,7 @@ public interface CourseMapper {
 
     @Mapping(target = "id", expression = "java(course.isVisible() ? course.getId() : null)")
     @Mapping(target = "description", expression = "java(course.isVisible() ? course.getDescription() : null)")
+    @Mapping(target = "tags", expression = "java(course.isVisible() ? course.getTags() : null)")
     CourseResponse toCourseResponse(Course course);
 
     default List<String> mapTags(String tags) {
