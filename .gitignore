@@ -2,3 +2,4 @@
 **/target/**
 *.iml
 lucene-indexes/
+**/.DS_Store
