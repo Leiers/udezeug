@@ -8,6 +8,7 @@ import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextFi
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.KeywordField;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -39,4 +40,7 @@ public class Course {
 
     @Builder.Default
     private boolean visible = true;
+
+    private LocalDate examDate;
+    private String moodle;
 }

@@ -1,5 +1,6 @@
 package de.udezeug.backend.course.dto;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -8,6 +9,8 @@ public record CourseResponse(
         String name,
         String description,
         List<String> tags,
-        Boolean visible
+        Boolean visible,
+        LocalDate examDate,
+        String moodle
 ) {
 }

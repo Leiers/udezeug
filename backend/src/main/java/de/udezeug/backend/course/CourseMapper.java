@@ -18,11 +18,14 @@ import java.util.List;
 )
 public interface CourseMapper {
     @Mapping(target = "tags", expression = "java(mapTags(request.tags()))")
+    @Mapping(target = "examDate", source = "request.examDate")
     Course toCourse(CourseCreationRequest request);
 
     @Mapping(target = "id", expression = "java(course.isVisible() ? course.getId() : null)")
     @Mapping(target = "description", expression = "java(course.isVisible() ? course.getDescription() : null)")
     @Mapping(target = "tags", expression = "java(course.isVisible() ? course.getTags() : null)")
+    @Mapping(target = "examDate", expression = "java(course.isVisible() ? course.getExamDate() : null)")
+    @Mapping(target = "moodle", expression = "java(course.isVisible() ? course.getMoodle() : null)")
     CourseResponse toCourseResponse(Course course);
 
     default List<String> mapTags(String tags) {
