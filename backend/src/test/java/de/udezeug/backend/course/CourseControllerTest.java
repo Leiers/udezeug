@@ -9,6 +9,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,9 +31,9 @@ public class CourseControllerTest {
     @Test
     void shouldReturnCourse() throws Exception {
         final Course course = new Course(UUID.randomUUID(), "Course name", "Course description", List.of("Tag 1",
-                "Tag 2"), true);
+                "Tag 2"), true, LocalDate.now(), "https://moodle.example.org");
         final CourseResponse response = new CourseResponse(course.getId(), course.getName(), course.getDescription(),
-                course.getTags(), course.isVisible());
+                course.getTags(), course.isVisible(), course.getExamDate(), course.getMoodle());
 
         when(service.getCourse(course.getId())).thenReturn(response);
         when(mapper.toCourseResponse(course)).thenReturn(response);
@@ -45,14 +46,17 @@ public class CourseControllerTest {
                 .andExpect(jsonPath("$.visible").value(true))
                 .andExpect(jsonPath("$.tags").isArray())
                 .andExpect(jsonPath("$.tags[0]").value("Tag 1"))
-                .andExpect(jsonPath("$.tags[1]").value("Tag 2"));
+                .andExpect(jsonPath("$.tags[1]").value("Tag 2"))
+                .andExpect(jsonPath("$.examDate").exists())
+                .andExpect(jsonPath("$.moodle").value(course.getMoodle()));;
     }
 
     @Test
     void shouldReturnPrivateCourse() throws Exception {
         final Course course = new Course(UUID.randomUUID(), "Course name", "Course description", List.of("Tag 1",
-                "Tag 2"), false);
-        final CourseResponse response = new CourseResponse(null, course.getName(), null, null, false);
+                "Tag 2"), false, LocalDate.now(), "https://moodle.example.org");
+        final CourseResponse response = new CourseResponse(null, course.getName(), null, null, false,
+                null, null);
 
         when(service.getCourse(course.getId())).thenReturn(response);
         when(mapper.toCourseResponse(course)).thenReturn(response);
@@ -63,6 +67,8 @@ public class CourseControllerTest {
                 .andExpect(jsonPath("$.name").value(course.getName()))
                 .andExpect(jsonPath("$.description").doesNotExist())
                 .andExpect(jsonPath("$.visible").value(false))
-                .andExpect(jsonPath("$.tags").doesNotExist());
+                .andExpect(jsonPath("$.tags").doesNotExist())
+                .andExpect(jsonPath("$.examDate").doesNotExist())
+                .andExpect(jsonPath("$.moodle").doesNotExist());
     }
 }
