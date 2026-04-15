@@ -1,14 +1,55 @@
-<div class="container mx-auto p-2">
-  <header class="flex flex-col gap-3">
-    <h3 class="flex items-baseline gap-2">
-      <span class="text-4xl font-bold">{{ course().name }}</span>
+<div class="container mx-auto p-2 flex flex-col gap-5">
+  <header class="flex items-center">
+    <h3 class="flex flex-1 items-center gap-2 min-w-0">
+      <span class="text-4xl font-bold line-clamp-3">{{ course().name }}</span>
 
       @if (!course().visible) {
-        <mat-icon>lock</mat-icon>
+      <mat-icon class="shrink-0">lock</mat-icon>
       }
 
-      <app-course-badges [course]="course()" />
+      <app-course-badges class="shrink-0" [course]="course()" />
     </h3>
-    <p class="text-gray-400">{{ course().description }}</p>
+
+    @if(course().moodle) {
+    <div>
+      <a [href]="course().moodle" target="_blank">
+        <button matButton matIconButton>
+          <mat-icon>school</mat-icon>
+          Moodlekurs
+        </button>
+      </a>
+    </div>
+    }
   </header>
+  <div class="text-gray-400 flex flex-col gap-3">
+    @if (course().examDate) {
+    <p class="flex gap-1 w-fit" matTooltip="Klausurdatum">
+      <mat-icon>history_edu</mat-icon>
+      {{ course().examDate | date }}
+    </p>
+    }
+
+    <div class="description">
+      @let desc = course().description;
+
+      <div
+        class="overflow-hidden transition-[max-height] duration-500 ease-in-out"
+        [class.max-h-20]="!descriptionExpanded()"
+        [class.max-h-[1000px]]="descriptionExpanded()"
+      >
+        <div
+          [class.line-clamp-3]="!descriptionExpanded()"
+          [class.line-clamp-none]="descriptionExpanded()"
+        >
+          {{ desc }}
+        </div>
+      </div>
+
+      @if (desc.length > 100) {
+      <button (click)="toggleDescription()" class="text-primary cursor-pointer">
+        {{ descriptionExpanded() ? 'Weniger' : 'Mehr anzeigen' }}
+      </button>
+      }
+    </div>
+  </div>
 </div>
