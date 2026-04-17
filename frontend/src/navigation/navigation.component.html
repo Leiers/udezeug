@@ -18,15 +18,15 @@
     <mat-nav-list class="select-none" (click)="drawer.mode === 'over' ? drawer.close() : null">
       <a mat-list-item routerLink="home">
         <mat-icon matListItemIcon>home</mat-icon>
-        <div matListItemTitle>Home</div>
+        <div matListItemTitle>{{ 'nav_links.home' | transloco }}</div>
       </a>
       <a mat-list-item routerLink="search">
         <mat-icon matListItemIcon>search</mat-icon>
-        <div matListItemTitle>Suche</div>
+        <div matListItemTitle>{{ 'nav_links.search' | transloco }}</div>
       </a>
       <a mat-list-item routerLink="course/new">
         <mat-icon matListItemIcon>add</mat-icon>
-        <div matListItemTitle>Neuer Kurs</div>
+        <div matListItemTitle>{{ 'nav_links.create' | transloco }}</div>
       </a>
     </mat-nav-list>
   </mat-sidenav>

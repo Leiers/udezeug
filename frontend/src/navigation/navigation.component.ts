@@ -1,16 +1,25 @@
-import {Component, effect, ElementRef, inject, signal, TemplateRef, ViewChild} from '@angular/core';
+import {
+  Component,
+  effect,
+  ElementRef,
+  inject,
+  signal,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import {AsyncPipe, NgOptimizedImage} from '@angular/common';
+import { AsyncPipe, NgOptimizedImage } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
-import {MatSidenav, MatSidenavModule} from '@angular/material/sidenav';
+import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import {Router, RouterLink, RouterOutlet} from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { OverlayModule } from '@angular/cdk/overlay';
-import {defaultPatterns, WebHaptics} from 'web-haptics';
+import { defaultPatterns, WebHaptics } from 'web-haptics';
+import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-navigation',
@@ -26,14 +35,15 @@ import {defaultPatterns, WebHaptics} from 'web-haptics';
     NgOptimizedImage,
     RouterLink,
     RouterOutlet,
-    OverlayModule
+    OverlayModule,
+    TranslocoPipe,
   ],
 })
 export class NavigationComponent {
   private breakpointObserver = inject(BreakpointObserver);
-  private router = inject(Router)
-  readonly searchOpen = signal(false)
-  readonly haptics = new WebHaptics()
+  private router = inject(Router);
+  readonly searchOpen = signal(false);
+  readonly haptics = new WebHaptics();
 
   @ViewChild('bigSearch')
   private searchElement!: ElementRef<HTMLInputElement>;
@@ -55,7 +65,7 @@ export class NavigationComponent {
   );
 
   get onSearchPage() {
-    return this.router.url.includes('search')
+    return this.router.url.includes('search');
   }
 
   @ViewChild('bigSearch') set searchRef(content: ElementRef) {

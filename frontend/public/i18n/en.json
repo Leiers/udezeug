@@ -1,1 +1,36 @@
-{}
+{
+  "nav_links": {
+    "home": "Home",
+    "search": "Search",
+    "create": "New course"
+  },
+  "create_course": {
+    "title": "Create new course",
+    "fields": {
+      "name": "Name",
+      "description": "Description",
+      "exam_date": "Exam date",
+      "tags": "Tags",
+      "moodle_link": "Moodle-Link",
+      "public": "Public",
+      "private": "Private"
+    },
+    "create_label": "Create"
+  },
+  "course_details": {
+    "not_found": {
+      "text": "Course not found",
+      "link": "Back to search"
+    },
+    "moodle_link": "Moodle course",
+    "exam_date": "Exam date",
+    "show_less": "Show less",
+    "show_more": "Show more"
+  },
+  "search": {
+    "search": "Search",
+    "clear_search": "Empty",
+    "results": "Results",
+    "view_course": "View"
+  }
+}

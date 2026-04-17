@@ -1,4 +1,9 @@
 {
+  "nav_links": {
+    "home": "Home",
+    "search": "Suche",
+    "create": "Neuer Kurs"
+  },
   "create_course": {
     "title": "Neuen Kurs anlegen",
     "fields": {
@@ -9,7 +14,8 @@
       "moodle_link": "Moodle-Link",
       "public": "Öffentlich",
       "private": "Privat"
-    }
+    },
+    "create_label": "Erstellen"
   },
   "course_details": {
     "not_found": {
@@ -22,6 +28,7 @@
     "show_more": "Mehr anzeigen"
   },
   "search": {
+    "search": "Suche",
     "clear_search": "Leeren",
     "results": "Ergebnisse",
     "view_course": "Ansehen"
