@@ -1,0 +1,6 @@
+<div class="flex items-baseline gap-1">
+  @for (badge of course().badges; track badge) {
+    @let config = badgeConfig[badge];
+    <mat-icon [matTooltip]="badge | titlecase" [style.color]="config.color">{{ config.icon }}</mat-icon>
+  }
+</div>

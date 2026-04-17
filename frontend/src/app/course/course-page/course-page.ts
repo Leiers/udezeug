@@ -1,20 +1,17 @@
-import {Component, computed, inject} from '@angular/core';
-import {ActivatedRoute, RouterLink} from '@angular/router';
-import {CourseService} from '../course-service';
-import {MatProgressSpinner} from '@angular/material/progress-spinner';
+import { Component, inject, input } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { CourseService } from '../course-service';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import {CourseDetails} from '../course-details/course-details';
 
 @Component({
   selector: 'app-course-page',
-  imports: [
-    RouterLink,
-    MatProgressSpinner,
-  ],
+  imports: [RouterLink, MatProgressSpinner, CourseDetails],
   templateUrl: './course-page.html',
   styleUrl: './course-page.css',
 })
 export class CoursePage {
-  private readonly activeRoute = inject(ActivatedRoute);
   private readonly courseService = inject(CourseService);
-  private readonly id = computed(() => this.activeRoute.snapshot.paramMap.get('id')!)
-  readonly course = this.courseService.getCourse(this.id())
+  readonly id = input<string>();
+  readonly course = this.courseService.getCourse(this.id);
 }

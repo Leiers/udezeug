@@ -1,5 +1,6 @@
 package de.udezeug.backend.course;
 
+import de.udezeug.backend.course.badge.CourseBadge;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
@@ -17,7 +18,7 @@ public class CourseRepositoryTest {
     @Test
     void shouldSaveCourse() {
         final Course course = this.repository.save(new Course(null, "Test Course", "Test Description", List.of("Tag " +
-                "1", "Tag 2"), true, LocalDate.now(), "https://moodle.example.org"));
+                "1", "Tag 2"), true, List.of(CourseBadge.OFFICIAL), LocalDate.now(), "https://moodle.example.org"));
         final var foundCourse = this.repository.findById(course.getId());
 
         assertThat(foundCourse).isPresent();
@@ -28,5 +29,6 @@ public class CourseRepositoryTest {
         assertThat(foundCourse.get().isVisible()).isEqualTo(true);
         assertThat(foundCourse.get().getExamDate().isEqual(course.getExamDate()));
         assertThat(foundCourse.get().getMoodle()).isEqualTo(course.getMoodle());
+        assertThat(foundCourse.get().getBadges()).containsExactly(CourseBadge.OFFICIAL);
     }
 }

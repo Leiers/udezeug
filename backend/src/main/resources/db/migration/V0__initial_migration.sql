@@ -1,6 +1,6 @@
 CREATE TABLE public.course (
     id uuid NOT NULL,
-    description character varying(255),
+    description TEXT,
     name character varying(255),
     visible boolean NOT NULL
 );
@@ -15,4 +15,3 @@ ALTER TABLE ONLY public.course
 
 ALTER TABLE ONLY public.course_tags
     ADD CONSTRAINT fk63ixc2ni7oipjtimftl4q5o01 FOREIGN KEY (course_id) REFERENCES public.course(id);
-

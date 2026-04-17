@@ -3,8 +3,10 @@
     <mat-spinner diameter="50"></mat-spinner>
   </div>
 } @else if (course.hasValue()) {
-  <p>Found course {{ course.value().name }}</p>
+  <app-course-details [course]="course.value()" />
 } @else {
-  <p>Course not found <a routerLink="/search" class="text-blue-400 underline underline-offset-3">Go to search</a></p>
+  <p>
+    Course not found
+    <a routerLink="/search" class="text-blue-400 underline underline-offset-3">Go to search</a>
+  </p>
 }
-

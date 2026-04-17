@@ -1,5 +1,6 @@
 package de.udezeug.backend.course;
 
+import de.udezeug.backend.course.badge.CourseBadge;
 import de.udezeug.backend.course.dto.CourseResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +32,9 @@ public class CourseControllerTest {
     @Test
     void shouldReturnCourse() throws Exception {
         final Course course = new Course(UUID.randomUUID(), "Course name", "Course description", List.of("Tag 1",
-                "Tag 2"), true, LocalDate.now(), "https://moodle.example.org");
+                "Tag 2"), true, List.of(CourseBadge.OFFICIAL), LocalDate.now(), "https://moodle.example.org");
         final CourseResponse response = new CourseResponse(course.getId(), course.getName(), course.getDescription(),
-                course.getTags(), course.isVisible(), course.getExamDate(), course.getMoodle());
+                course.getTags(), course.isVisible(), course.getBadges(), course.getExamDate(), course.getMoodle());
 
         when(service.getCourse(course.getId())).thenReturn(response);
         when(mapper.toCourseResponse(course)).thenReturn(response);
@@ -48,15 +49,18 @@ public class CourseControllerTest {
                 .andExpect(jsonPath("$.tags[0]").value("Tag 1"))
                 .andExpect(jsonPath("$.tags[1]").value("Tag 2"))
                 .andExpect(jsonPath("$.examDate").exists())
-                .andExpect(jsonPath("$.moodle").value(course.getMoodle()));;
+                .andExpect(jsonPath("$.moodle").value(course.getMoodle()))
+                .andExpect(jsonPath("$.tags[1]").value("Tag 2"))
+                .andExpect(jsonPath("$.badges").isArray())
+                .andExpect(jsonPath("$.badges[0]").value(CourseBadge.OFFICIAL.name()));
     }
 
     @Test
     void shouldReturnPrivateCourse() throws Exception {
         final Course course = new Course(UUID.randomUUID(), "Course name", "Course description", List.of("Tag 1",
-                "Tag 2"), false, LocalDate.now(), "https://moodle.example.org");
+                "Tag 2"), false, List.of(CourseBadge.OFFICIAL), LocalDate.now(), "https://moodle.example.org");
         final CourseResponse response = new CourseResponse(null, course.getName(), null, null, false,
-                null, null);
+                course.getBadges(), null, null);
 
         when(service.getCourse(course.getId())).thenReturn(response);
         when(mapper.toCourseResponse(course)).thenReturn(response);

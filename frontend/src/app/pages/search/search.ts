@@ -10,6 +10,7 @@ import {RouterLink} from '@angular/router';
 import {MatProgressSpinner} from '@angular/material/progress-spinner';
 import {MatButton} from '@angular/material/button';
 import {MatTooltip} from '@angular/material/tooltip';
+import {CourseBadges} from '../../course/badge/course-badges/course-badges';
 
 @Component({
   selector: 'app-search',
@@ -24,6 +25,7 @@ import {MatTooltip} from '@angular/material/tooltip';
     MatButton,
     MatCardContent,
     MatTooltip,
+    CourseBadges,
   ],
   templateUrl: './search.html',
   styleUrl: './search.css',
