@@ -70,7 +70,7 @@ jobs:
         run: |
           cd backend 
           mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
-          -Dsonar.projectKey=marvin2k0_udezeug_71392ec5-e769-41e8-ad16-65b162992323 \
+          -Dsonar.projectKey=marvin2k0_udezeug_2feb0a30-e257-494c-b12c-64bddd47b85e \
           -Dsonar.projectName='udezeug'
 
       - name: Log in to Docker Hub
