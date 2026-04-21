@@ -4,3 +4,4 @@
 lucene-indexes/
 **/.DS_Store
 **/.env
+**/node_modules/
