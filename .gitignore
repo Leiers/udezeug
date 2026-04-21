@@ -3,3 +3,4 @@
 *.iml
 lucene-indexes/
 **/.DS_Store
+**/.env
