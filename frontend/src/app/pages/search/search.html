@@ -43,12 +43,18 @@
             <div class="grid grid-cols-[1fr_auto] items-center gap-4 w-full">
               <div class="flex flex-col min-w-0">
                 <mat-card-title>
-                  <span class="truncate font-bold text-lg flex items-center gap-2">
+                  <div class="flex items-center gap-2 font-bold text-lg w-full">
+
                     @if (!course.visible) {
-                    <mat-icon>lock</mat-icon>
-                    } {{ course.name }}
-                    <app-course-badges [course]="course" />
-                  </span>
+                      <mat-icon class="shrink-0">lock</mat-icon>
+                    }
+
+                    <span class="truncate" [matTooltip]="course.name">{{ course.name }}</span>
+
+                    <div class="shrink-0 flex items-center">
+                      <app-course-badges [course]="course" />
+                    </div>
+                  </div>
                 </mat-card-title>
                 <mat-card-subtitle>
                   <span class="text-gray-400 block truncate">{{ course.description }}</span>
